@@ -65,7 +65,7 @@ require __DIR__ . '/../lib/vendor/autoload.php';
 							Login
 						</button>
                         <?php $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
-                        <a href="<?= $actual_link ?>reg.php" style="color : white;" class="login100-form-btn">
+                        <a href="<?= $actual_link ?>register" style="color : white;" class="login100-form-btn">
 							Register 
 						</a>
 					</div>
