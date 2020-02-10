@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V16</title>
+	<title>ثبتنام کاربر</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -38,8 +38,8 @@ require __DIR__ . '/.././lib/vendor/autoload.php';
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/../images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
-				<span class="login100-form-title p-b-41">
-					Account Login
+				<span class="login100-form-title p-b-41" style="font-family: Tahoma,serif">
+					ثبتنام کاربر
 				</span>
                 <div class="login100-form-title p-b-41"><?php
             
@@ -49,8 +49,8 @@ require __DIR__ . '/.././lib/vendor/autoload.php';
                     </div>
 				<form method="post" class="login100-form validate-form p-b-33 p-t-5">
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+					<div class="wrap-input100 validate-input" data-validate = "Enter username (Email)">
+						<input class="input100" type="email" name="email" placeholder="User name (Email) ">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
                     
@@ -62,25 +62,49 @@ require __DIR__ . '/.././lib/vendor/autoload.php';
 
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
-							Login
-						</button>
                         <?php $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
-                        <a href="/../<?= $actual_link ?>reg.php" style="color : white;" class="login100-form-btn">
+                        <button type="submit" name="submit" href="<?= $actual_link ?>reg.php" style="color : white;text-align:center;width:100%" class="login100-form-btn -align-center">
 							Register 
-						</a>
-                        <button class="submit_btn" type="submit" name="submit">Register</button>
-
-                    </div>
-
-				</form>
-                <form method="post" action=".././lib/sql.php">
-                    <div >
-                        <input type="hidden"  name="create" value="ok">
-                        <button class="submit_btn" type="submit" name="submit">create table</button>
-
-                    </div>
+						</button>
                 </form>
+                            <form method="post" action=".././lib/sql.php">
+                                <div >
+                                    <input type="hidden"  name="createtable" value="ok">
+                                    <button style="background-color: #004085;
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 15px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 20px;
+                                                    margin-top: 12px;" class="btn" type="submit" name="submit">create table
+                                    </button>
+
+                                </div>
+                            </form>
+                            <form method="post" action=".././lib/sql.php">
+                                <div >
+                                    <input type="hidden"  name="createdatabase" value="ok">
+                                    <button style="background-color: #004085;
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 15px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 20px;
+                                                    margin-top: 12px;
+                                                    margin-left: 5px;
+
+                                                    " class="btn" type="submit" name="submit">create database
+                                    </button>
+
+                                </div>
+                            </form>
+                    </div>
+
+
 			</div>
 		</div>
 	</div>

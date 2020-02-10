@@ -7,61 +7,53 @@
 //$conn = new PDO("mysql:host=$db_server;dbname=$db_database", $db_username, $db_password);
 //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+$servername = "127.0.0.1";
+$username = "root";
+$password = "root";
+$dbname = "userpanel";
+$dataBaseCreate =  $_POST['createdatabase'];
+$dataBaseTable = $_POST['createtable'];
+// Create connection
 
-
-
-// test connect
-
-//try{
-//    $dbh = new pdo( 'mysql:host=0.0.0.0:3306;dbname=test',
-//        'root',
-//        'root',
-//        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-//    die(json_encode(array('outcome' => true)));
-//}
-//catch(PDOException $ex){
-//    die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
-//}
-
-
-//main
-if (isset($_POST['submit'])){
-    $db_server = "0.0.0.0:3306";
-    $db_username = "root";
-    $db_password = "root";
-    $db_database = "test";
-
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $user_name = $_POST['user_name'];
-    $password1 = $_POST['password'];
-    $createUser = $_POST['create'];
-
-    $conn = new PDO("mysql:host=$db_server;dbname=$db_database", $db_username, $db_password);
-//var_dump($conn);die;
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql = "INSERT INTO user (first_name, last_name, user_name, password)
-VALUES ('$first_name', '$last_name', '$user_name', '$password1')";
-//var_dump($sql);die;
-    $sql_create = "CREATE TABLE `user_registration` (
-  `user_id` INT(11) NOT NULL,
-  `first_name` VARCHAR(100) NOT NULL,
-  `last_name` VARCHAR(100) NOT NULL,
-  `user_name` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-
-
-
-    /** @var TYPE_NAME $createUser */
-    if (isset($createUser)){
-        $conn->exec($sql_create);
-    }
-    else {
+if (isset($dataBaseCreate)){
+    try {
+        $conn = new PDO("mysql:host=$servername", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "CREATE DATABASE userpanel";
+        // use exec() because no results are returned
         $conn->exec($sql);
+        echo "Database created successfully<br>";
+    }
+    catch(PDOException $e)
+    {
+        echo $sql . "<br>" . $e->getMessage();
     }
 
-    echo "<script>alert('Account successfully added!'); window.location='index.php'</script>";
+    $conn = null;
+}
+if (isset($dataBaseTable)) {
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $sql = "CREATE TABLE user (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(30) NOT NULL,
+            password VARCHAR(30) NOT NULL,
+            reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )";
+
+
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        echo "Database created successfully<br>";
+    }
+    catch(PDOException $e)
+    {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
+    $conn = null;
 }
