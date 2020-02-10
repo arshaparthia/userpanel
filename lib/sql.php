@@ -13,26 +13,32 @@ $password = "root";
 $dbname = "userpanel";
 $dataBaseCreate =  $_POST['createdatabase'];
 $dataBaseTable = $_POST['createtable'];
+$createuser = $_POST['createuser'];
+
+$userEmail = $_POST['email'];
+$userPassword = $_POST['password'];
+$reg_date = $_POST['reg_date'];
+$reg_date = date('Y-m-d H:i:s');
 // Create connection
 
-if (isset($dataBaseCreate)){
-    try {
-        $conn = new PDO("mysql:host=$servername", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "CREATE DATABASE userpanel";
-        // use exec() because no results are returned
-        $conn->exec($sql);
-        echo "Database created successfully<br>";
-    }
-    catch(PDOException $e)
-    {
-        echo $sql . "<br>" . $e->getMessage();
-    }
+        if (isset($dataBaseCreate)){
+            try {
+                $conn = new PDO("mysql:host=$servername", $username, $password);
+                // set the PDO error mode to exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql = "CREATE DATABASE userpanel";
+                // use exec() because no results are returned
+                $conn->exec($sql);
+                echo "Database created successfully<br>";
+            }
+            catch(PDOException $e)
+            {
+                echo $sql . "<br>" . $e->getMessage();
+            }
 
-    $conn = null;
-}
-if (isset($dataBaseTable)) {
+            $conn = null;
+        }
+        if (isset($dataBaseTable)) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
@@ -57,3 +63,24 @@ if (isset($dataBaseTable)) {
 
     $conn = null;
 }
+
+        if (isset($createuser)) {
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                // set the PDO error mode to exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO user (email, password , reg_date)
+                 VALUES ('$userEmail' , '$userPassword' , '$reg_date' )";
+                // use exec() because no results are returned
+                $conn->exec($sql);
+                echo "New record created successfully";
+            }
+            catch(PDOException $e)
+            {
+                echo $sql . "<br>" . $e->getMessage();
+            }
+
+            $conn = null;
+        }
+
+

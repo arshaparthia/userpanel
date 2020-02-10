@@ -47,23 +47,25 @@ require __DIR__ . '/.././lib/vendor/autoload.php';
                     echo $date;
                     ?>
                     </div>
-				<form method="post" class="login100-form validate-form p-b-33 p-t-5">
+				<form action=".././lib/sql.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username (Email)">
 						<input class="input100" type="email" name="email" placeholder="User name (Email) ">
+                        <input type="hidden" name="createuser" value="ok">
+                        <input type="hidden" name="reg_date" value="<?= $date ?>">
+
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
                     
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
 
 					<div class="container-login100-form-btn m-t-32">
-                        <?php $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
-                        <button type="submit" name="submit" href="<?= $actual_link ?>reg.php" style="color : white;text-align:center;width:100%" class="login100-form-btn -align-center">
+                        <button type="submit" name="submit" style="color : white;text-align:center;width:100%" class="login100-form-btn -align-center">
 							Register 
 						</button>
                 </form>
