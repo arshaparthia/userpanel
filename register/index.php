@@ -29,7 +29,7 @@
 </head>
 <!-- ****************************** -->
 <?php 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/.././lib/vendor/autoload.php';
 ?>
 
 <!-- ****************************** -->
@@ -60,6 +60,7 @@ require __DIR__ . '/vendor/autoload.php';
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
+
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn">
 							Login
@@ -68,9 +69,18 @@ require __DIR__ . '/vendor/autoload.php';
                         <a href="<?= $actual_link ?>reg.php" style="color : white;" class="login100-form-btn">
 							Register 
 						</a>
-					</div>
+                        <button class="submit_btn" type="submit" name="submit">Register</button>
+
+                    </div>
 
 				</form>
+                <form method="post" action=".././lib/sql.php">
+                    <div >
+                        <input type="hidden"  name="create" value="ok">
+                        <button class="submit_btn" type="submit" name="submit">create table</button>
+
+                    </div>
+                </form>
 			</div>
 		</div>
 	</div>
