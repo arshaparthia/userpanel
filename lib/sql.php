@@ -14,8 +14,11 @@ $dbname = "userpanel";
 $dataBaseCreate =  $_POST['createdatabase'];
 $dataBaseTable = $_POST['createtable'];
 $createuser = $_POST['createuser'];
+$userlist = $_POST['userlist'];
 
 $userEmail = $_POST['email'];
+$usernameLogin = $_POST['usernameLogin'];
+$passwordLogin = $_POST['passwordLogin'];
 $userPassword = $_POST['password'];
 $userPassword = crypt($userPassword);
 $url = "http://userpanel.lc/";
@@ -86,5 +89,27 @@ $reg_date = date('Y-m-d H:i:s');
 
             $conn = null;
         }
+                // for select db
+        if (isset($userlist)) {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    // set the PDO error mode to exception
+                     $data = $conn->prepare("SELECT email, password FROM user WHERE email='$usernameLogin'");
+                     $data->execute();
+                    $result = $data->fetchAll();
+//                   var_dump($result);die;
+//                    var_dump($result['0']['email']);die;
 
 
+                    if (hash_equals($result['0']['password'], crypt($passwordLogin, $result['0']['password']))) {
+                        echo "Password verified!";
+                        setcookie("user_name", $result['0']['email'], time()+ 6000,'/'); // expires after 6000 seconds
+//                        print_r($_COOKIE);
+                        if (isset($_COOKIE)){
+                            header("Location: " . $url . "panel");
+                        }
+                    }
+                    else{
+                        echo 'no';
+                    }
+
+                }

@@ -28,8 +28,12 @@
 <!--===============================================================================================-->
 </head>
 <!-- ****************************** -->
-<?php 
+<?php
+// jdate for jalali date
 require __DIR__ . '/../lib/vendor/autoload.php';
+// select DB
+require __DIR__ . '/../lib/sql.php';
+
 ?>
 
 <!-- ****************************** -->
@@ -47,16 +51,17 @@ require __DIR__ . '/../lib/vendor/autoload.php';
                     echo $date;
                     ?>
                     </div>
-				<form method="post" class="login100-form validate-form p-b-33 p-t-5">
+				<form action=".././lib/sql.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+						<input class="input100" type="text" name="usernameLogin" placeholder="User name">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
                     
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="passwordLogin" placeholder="Password">
+                        <input class="input100" type="hidden" name="userlist">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
