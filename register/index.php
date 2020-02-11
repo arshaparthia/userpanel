@@ -52,7 +52,7 @@ require __DIR__ . '/.././lib/vendor/autoload.php';
 					<div class="wrap-input100 validate-input" data-validate = "Enter username (Email)">
 						<input class="input100" type="email" name="email" placeholder="User name (Email) ">
                         <input type="hidden" name="createuser" value="ok">
-                        <input type="hidden" name="reg_date" value="<?= $date ?>">
+
 
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>

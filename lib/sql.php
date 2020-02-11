@@ -17,7 +17,9 @@ $createuser = $_POST['createuser'];
 
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
-$reg_date = $_POST['reg_date'];
+$userPassword = crypt($userPassword);
+$url = "http://userpanel.lc/";
+
 $reg_date = date('Y-m-d H:i:s');
 // Create connection
 
@@ -47,7 +49,7 @@ $reg_date = date('Y-m-d H:i:s');
             $sql = "CREATE TABLE user (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(30) NOT NULL,
-            password VARCHAR(30) NOT NULL,
+            password varchar(191) NOT NULL,
             reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )";
 
@@ -74,6 +76,8 @@ $reg_date = date('Y-m-d H:i:s');
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 echo "New record created successfully";
+                header("Location: $url");
+                die();
             }
             catch(PDOException $e)
             {
