@@ -16,10 +16,10 @@ $dataBaseTable = $_POST['createtable'];
 $createuser = $_POST['createuser'];
 $userlist = $_POST['userlist'];
 
-$userEmail = $_POST['email'];
+$userEmail = htmlspecialchars($_POST['email']);
 $usernameLogin = $_POST['usernameLogin'];
 $passwordLogin = $_POST['passwordLogin'];
-$userPassword = $_POST['password'];
+$userPassword = htmlspecialchars($_POST['password']);
 $userPassword = crypt($userPassword);
 $url = "http://userpanel.lc/";
 
@@ -113,3 +113,4 @@ $reg_date = date('Y-m-d H:i:s');
                     }
 
                 }
+

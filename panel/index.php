@@ -1,5 +1,6 @@
 <?php
 $url = "http://userpanel.lc/";
+//var_dump($_COOKIE);die;
 if (isset($_COOKIE)){
     echo "به پنل خود خوش آمدید";
     echo "<br>";
